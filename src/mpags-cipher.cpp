@@ -57,23 +57,21 @@ int main(int argc, char* argv[])
                   << "') not implemented yet, using stdin\n";
     }
 
-    char in_char{'x'};
+    // Warn that output file option not yet implemented
+    if (!outputFile.empty()) {
+        std::cerr << "[warning] output to file ('" << outputFile
+                  << "') not implemented yet, using stdout\n";
+    }
+
+     char in_char{'x'};
     std::string inputText;
     // loop over each character from user input
 
     while (std::cin >> in_char) {
         inputText += transformChar(in_char);
     }
-
-
-    // Print out the transliterated text
-
-    // Warn that output file option not yet implemented
-    if (!outputFile.empty()) {
-        std::cerr << "[warning] output to file ('" << outputFile
-                  << "') not implemented yet, using stdout\n";
-    }
     
+    //Print out the transliterated text
     std::cout << inputText <<std::endl;
 
     // No requirement to return from main, but we do so for clarity
