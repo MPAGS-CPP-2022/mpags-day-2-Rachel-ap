@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
+
 #include "processCommandLine.hpp"
 
 //process the command line arguments 
@@ -36,6 +38,7 @@ bool processCommandLine(
             }
         } else if (args[i] == "-o") {
             // Handle output file option
+
             // Next element is filename unless "-o" is the last argument
             if (i == nCmdLineArgs - 1) {
                 std::cerr << "[error] -o requires a filename argument"

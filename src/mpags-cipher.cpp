@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 #include "TransformChar.hpp"
 #include "processCommandLine.hpp"
 
@@ -50,27 +51,50 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-    // Read in user input from stdin/file
+    char in_char{'x'};
+    std::string inputText;
+    
+    // Read in user input from stdinfile
     // Warn that input file option not yet implemented
     if (!inputFile.empty()) {
-        std::cerr << "[warning] input from file ('" << inputFile
-                  << "') not implemented yet, using stdin\n";
+        std::ifstream inputStream{inputFile};
+
+        if (!inputStream.good()){
+            std::cerr << "unable to open file" << std::endl;
+            return 1;
+        }
+
+        while(inputStream >> in_char){
+            inputText += transformChar(in_char);
+        }
+    }
+
+    else{
+        while(std::cin >> in_char){
+
+            inputText += transformChar(in_char);
+        }
     }
 
     // Warn that output file option not yet implemented
     if (!outputFile.empty()) {
-        std::cerr << "[warning] output to file ('" << outputFile
-                  << "') not implemented yet, using stdout\n";
+        std::ofstream outputStream{outputFile};
+
+        if (!outputStream.good())
+        {
+            std::cerr << "Unable to open file for writing " << std::endl;
+            return 1;
+
+        }
+
+        outputStream << inputText << std::endl;
+
+
     }
 
-     char in_char{'x'};
-    std::string inputText;
-    // loop over each character from user input
 
-    while (std::cin >> in_char) {
-        inputText += transformChar(in_char);
-    }
-    
+
+
     //Print out the transliterated text
     std::cout << inputText <<std::endl;
 
