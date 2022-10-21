@@ -58,10 +58,11 @@ int main(int argc, char* argv[])
     }
 
     char in_char{'x'};
+    std::string inputText;
     // loop over each character from user input
+
     while (std::cin >> in_char) {
-        std::string inputText{transformChar(in_char)};
-        std::cout << inputText <<std::endl;
+        inputText += transformChar(in_char);
     }
 
 
@@ -72,7 +73,8 @@ int main(int argc, char* argv[])
         std::cerr << "[warning] output to file ('" << outputFile
                   << "') not implemented yet, using stdout\n";
     }
-
+    
+    std::cout << inputText <<std::endl;
 
     // No requirement to return from main, but we do so for clarity
     // and for consistency with other functions
