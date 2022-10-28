@@ -12,7 +12,10 @@ bool processCommandLine(
                         bool& helpRequested,
                         bool& versionRequested,
                         std::string& inputFile,
-                        std::string& outputFile
+                        std::string& outputFile,
+                        bool& encrypt,
+                        bool& decrypt,
+                        int& key
 )
 {    const std::size_t nCmdLineArgs{args.size()};
 
@@ -50,7 +53,41 @@ bool processCommandLine(
                 outputFile = args[i + 1];
                 ++i;
             }
-        } else {
+
+        } else if (args[i] == "-encrypt") 
+        {// Next element is filename unless "-encrypt " is the last argument
+            if (i == nCmdLineArgs -1){
+                std::cerr << "[error] -encrypt requires a key to be given" << std::endl;
+                //exit main with non-zero return to indicate failure
+                return false;
+                
+            }
+            else {
+                // Got key, so assign value and advance past it
+                encrypt = true;
+                key = std::stoi(args[i+1]);
+                ++i;
+
+            }
+        } 
+        else if (args[i] == "-decrypt")
+        {
+            if (i ==nCmdLineArgs -1){
+                std::cerr << "[error] -decrypt requires a key to be given" << std::endl;
+                //exit main with non-zero return to indicate failure
+                return false;
+            }
+            else{
+                //Got key, so assign value and advance past it
+                decrypt = true;
+                key = std::stoi(args[i+1]);
+                ++i;
+            }
+        }
+        
+        
+        
+            else {
             // Have an unknown flag to output error message and return non-zero
             // exit status to indicate failure
             std::cerr << "[error] unknown argument '" << args[i]

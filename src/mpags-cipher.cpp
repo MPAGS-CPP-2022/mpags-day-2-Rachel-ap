@@ -5,6 +5,7 @@
 #include <fstream>
 #include "TransformChar.hpp"
 #include "processCommandLine.hpp"
+#include "runCaesarCipher.hpp"
 
 
 int main(int argc, char* argv[])
@@ -18,8 +19,13 @@ int main(int argc, char* argv[])
     bool versionRequested{false};
     std::string inputFile{""};
     std::string outputFile{""};
+    bool encrypt{0};
+    bool decrypt{0};
+    std::size_t key{0};
+    //std::string runCaesarCipher(const std::string& inputText, const size_t key, const bool encrypt, const bool decrypt);
 
-    if (!processCommandLine(cmdLineArgs, helpRequested, versionRequested, inputFile, outputFile))
+
+    if (!processCommandLine(cmdLineArgs, helpRequested, versionRequested, inputFile, outputFile, encrypt, decrypt, key))
     {
         return 1;
     }    
@@ -53,6 +59,7 @@ int main(int argc, char* argv[])
 
     char in_char{'x'};
     std::string inputText;
+    std::string outputText;
     
     // Read in user input from stdinfile
     // Warn that input file option not yet implemented
@@ -74,7 +81,11 @@ int main(int argc, char* argv[])
 
             inputText += transformChar(in_char);
         }
+
     }
+    outputText = runCaesarCipher(inputText, key, encrypt, decrypt);
+    std::cout << outputText << std::endl;    
+    
 
     // Warn that output file option not yet implemented
     if (!outputFile.empty()) {
@@ -86,20 +97,20 @@ int main(int argc, char* argv[])
             return 1;
 
         }
+        else {
+            outputStream << outputText << "\n";
+        }
+        }
 
-        outputStream << inputText << std::endl;
-
-
-    }
-
-
-
+    
+    else {
 
     //Print out the transliterated text
-    std::cout << inputText <<std::endl;
+    std::cout << inputText << std::endl;
 
     // No requirement to return from main, but we do so for clarity
     // and for consistency with other functions
     return 0;
+    }
 }
 

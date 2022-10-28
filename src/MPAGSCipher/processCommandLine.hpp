@@ -9,7 +9,11 @@ bool processCommandLine(
                         bool& helpRequested,
                         bool& versionRequested,
                         std::string& inputFile,
-                        std::string& outputFile
+                        std::string& outputFile,
+                        bool& encrypt,
+                        bool& decrypt,
+                        int key
+
 );
 
 #endif // MPAGSCIPHER_PROCESSCOMMANDLINE_HPP
