@@ -27,7 +27,7 @@ target_include_directories(mpags-cipher
     PRIVATE MPAGSCipher    
     )
 
-# - Don't allow C++ Compiler Vendor Extensions
+# - Don't allow C++ Compiler Vendor Extensions.
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # - Use our standard set of flags
