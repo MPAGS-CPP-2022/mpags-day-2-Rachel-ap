@@ -8,7 +8,7 @@
 
  std::string transformChar ( const char in_char){
   // Initialise variables
-    std::string inputText;
+    std::string inputText{""};
   // Uppercase alphabetic characters
     if (std::isalpha(in_char)) {
         inputText += std::toupper(in_char);

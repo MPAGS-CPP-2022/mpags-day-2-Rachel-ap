@@ -12,7 +12,7 @@ bool processCommandLine(
                         std::string& outputFile,
                         bool& encrypt,
                         bool& decrypt,
-                        int key
+                        size_t& key
 
 );
 

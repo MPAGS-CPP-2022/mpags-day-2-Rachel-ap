@@ -5,7 +5,7 @@
 #include <fstream>
 #include "runCaesarCipher.hpp"
 
-std::string runCaesarCipher( const std::string& inputText, const size_t key, const bool& encrypt, const bool& decrypt )
+std::string runCaesarCipher( const std::string& inputText, size_t key, const bool encrypt, const bool decrypt )
 {
     // Create the alphabet container and output string
     std::string alphabet{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"};

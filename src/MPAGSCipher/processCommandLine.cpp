@@ -15,9 +15,10 @@ bool processCommandLine(
                         std::string& outputFile,
                         bool& encrypt,
                         bool& decrypt,
-                        int& key
+                        size_t& key
 )
 {    const std::size_t nCmdLineArgs{args.size()};
+
 
 // Process command line arguments - ignore zeroth element, as we know this
     // to be the program name and don't need to worry about it

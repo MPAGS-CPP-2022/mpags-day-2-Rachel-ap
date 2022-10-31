@@ -21,8 +21,7 @@ int main(int argc, char* argv[])
     std::string outputFile{""};
     bool encrypt{0};
     bool decrypt{0};
-    std::size_t key{0};
-    //std::string runCaesarCipher(const std::string& inputText, const size_t key, const bool encrypt, const bool decrypt);
+    size_t key{0};
 
 
     if (!processCommandLine(cmdLineArgs, helpRequested, versionRequested, inputFile, outputFile, encrypt, decrypt, key))
@@ -84,7 +83,7 @@ int main(int argc, char* argv[])
 
     }
     outputText = runCaesarCipher(inputText, key, encrypt, decrypt);
-    std::cout << outputText << std::endl;    
+    std::cout << "Coded Text: " + outputText << std::endl;    
     
 
     // Warn that output file option not yet implemented
@@ -93,7 +92,7 @@ int main(int argc, char* argv[])
 
         if (!outputStream.good())
         {
-            std::cerr << "Unable to open file for writing " << std::endl;
+            std::cerr << "Unable to open file for writing " <<std::endl;
             return 1;
 
         }
@@ -106,11 +105,15 @@ int main(int argc, char* argv[])
     else {
 
     //Print out the transliterated text
-    std::cout << inputText << std::endl;
+    std::cout << "Transliterated input text: " + inputText << std::endl;
+    }
+    //if(encrypt || decrypt){
+        // std::cout << outputText <<std::endl;
+    //}
 
     // No requirement to return from main, but we do so for clarity
     // and for consistency with other functions
     return 0;
-    }
+    
 }
 
